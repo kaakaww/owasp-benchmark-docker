@@ -20,7 +20,9 @@ RUN set -eux \
 && mvn compile \
 && mvn initialize \
 && mvn clean \
-&& mvn package
+&& mvn package \
+&& mvn cargo:install
+
 
 WORKDIR /BenchmarkJava
 expose 8443
