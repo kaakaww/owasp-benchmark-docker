@@ -51,3 +51,10 @@ jobs:
           manifest_tags: |
             ${{ env.ORG_NAME }}/${{ env.IMAGE_NAME }}:latest
             ${{ env.ORG_NAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+      - name: Push README to Docker Hub
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: {{ env.ORG_NAME }}/${{ env.IMAGE_NAME }}
