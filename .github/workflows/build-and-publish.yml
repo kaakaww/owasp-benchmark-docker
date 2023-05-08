@@ -55,6 +55,6 @@ jobs:
       - name: Push README to Docker Hub
         uses: peter-evans/dockerhub-description@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          username: ${{ env.DOCKERHUB_USERNAME }}
+          password: ${{ env.DOCKERHUB_TOKEN }}
           repository: {{ env.ORG_NAME }}/${{ env.IMAGE_NAME }}
