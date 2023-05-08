@@ -1,28 +1,21 @@
 FROM maven
 
 RUN set -eux \
-&& apt-get update \
-&& apt-get install -y --no-install-recommends --no-install-suggests \
-git \
-ca-certificates \
-&& update-ca-certificates
+  && apt-get update \
+  && apt-get install -y --no-install-recommends --no-install-suggests \
+    git \
+    ca-certificates \
+  && update-ca-certificates
 
-  # Get OWASP Benchmark
+# Get OWASP Benchmark
 RUN set -eux \
-&& git clone https://github.com/OWASP-Benchmark/BenchmarkJava /BenchmarkJava \
-&& chmod +x /BenchmarkJava/runRemoteAccessibleBenchmark.sh
-  #	&& rm -rf /BenchmarkJava/.github \
-  #	&& rm -rf /BenchmarkJava/.gitignore
+  && git clone https://github.com/OWASP-Benchmark/BenchmarkJava /BenchmarkJava \
+  && chmod +x /BenchmarkJava/runRemoteAccessibleBenchmark.sh
 
-  #Compile Benchmark
+#Compile Benchmark
 RUN set -eux \
-&& cd /BenchmarkJava \
-&& mvn compile \
-&& mvn initialize \
-&& mvn clean \
-&& mvn package \
-&& mvn cargo:install
-
+  && cd /BenchmarkJava \
+  && mvn compile initialize clean package cargo:install
 
 WORKDIR /BenchmarkJava
 expose 8443
