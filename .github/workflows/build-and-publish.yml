@@ -57,4 +57,4 @@ jobs:
         with:
           username: ${{ env.DOCKERHUB_USERNAME }}
           password: ${{ env.DOCKERHUB_TOKEN }}
-          repository: {{ env.ORG_NAME }}/${{ env.IMAGE_NAME }}
+          repository: kaakaww/owasp-benchmark
